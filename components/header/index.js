@@ -21,7 +21,7 @@ const Header = (props) => {
                 <div className="row">
                     <div className="col-lg-3 col-md-4 col-sm-4 col-4">
                         <div className="logo">
-                            <Link href="/home" title=""> <p>SOLIDARITE</p> </Link>
+                            <Link href="/home" title=""> <p>JAPNASI </p> </Link>
                         </div>
                     </div>
                     <div className="col-lg-8 d-lg-block d-none">

@@ -24,13 +24,14 @@ const Donate = (props) => {
         var succeslink = 'https://dkrinfos.com/reussi.php';
         var failedlink = 'https://dkrinfos.com/echec.php';
         var ref = randomRef;
-        var samamontant = montant
+       // var samamontant = montant
+        var samamontant = isMontant1000Selected ? 1000 : montantSaisi; // Utilise 1000 CFA si le bouton radio "Montant de base (1000 CFA)" est sélectionné, sinon utilise la valeur saisie
         if (!samamontant) {
-            alert("Veuillez renseigner le montant avant de continuer.");    
+            alert("Veuillez renseigner le montant avant de continuer.");
             return;
         }
-     
-        // console.log(samamontant);
+
+         console.log(samamontant);
         sendPaymentInfos(ref,
             'DAKIN14898', 'iDnrqZwm252SnwDuQvtHSIVxUgpmFXLzfLONQOOkH51ylgmlNw',
             'dkrinformatique.sn', succeslink,
@@ -41,8 +42,11 @@ const Donate = (props) => {
 
     const [phone, setPhone] = useState("");
 
-    const [montant, setMontant] = useState('');
     const [mail, setMail] = useState('');
+    const [montant, setMontant] = useState(1000); // Initialisez avec 1000 CFA par défaut
+    const [montantSaisi, setMontantSaisi] = useState(''); // Pour gérer la saisie utilisateur
+    const [isMontant1000Selected, setIsMontant1000Selected] = useState(true); // Pour gérer la sélection du bouton radio
+
 
     const SubmitHandler = (e) => {
         e.preventDefault()
@@ -71,38 +75,95 @@ const Donate = (props) => {
 
     return (
         <div className="tp-donation-page-area section-padding">
+            <style jsx>{`
+                /* Ajoutez du CSS personnalisé pour styliser les boutons radio */
+                
+
+                .custom-radio input:checked ~ .checkmark:after {
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    top: 4px;
+                    left: 4px;
+                    width: 12px;
+                    height: 12px;
+                    background-color: #1d5d1d; /* Couleur de la coche lorsque le bouton radio est sélectionné */
+                    border-radius: 3px; /* Bordure arrondie de la coche */
+                }
+            `}</style>
             <div className="container">
                 <div className="row">
                     <div className="col-lg-8 offset-lg-2">
-                     {selectedCause && (
+                        {selectedCause && (
                             <div>
                                 {/* <h2>Informations de la campagne sélectionnée :</h2>
                                 <p>But : {selectedCause.Goal} CFA</p>
                                 <p>Recueillis : {selectedCause.Raised} CFA</p> */}
                                 <div className="tp-donate-header">
-                            <h2 style={{ color: "#1d5d1d" }}>FAIRE UN DON</h2>
-                            <h3>CAMPAGNES : {selectedCause.cTitle}</h3>
-                        </div>
+                                    <h2 style={{ color: "#1d5d1d" }}>FAIRE UN DON</h2>
+                                    <h3>CAMPAGNES : {selectedCause.cTitle}</h3>
+                                </div>
                                 {/* ... Affichez d'autres informations de la campagne */}
                             </div>
-                            
+
                         )}
-                     
+
 
 
                         <div id="Donations">
                             <form onSubmit={SubmitHandler} action="#">
                                 <div className="tp-donations-amount">
                                     <h2>Entrez votre donation</h2>
-                                    <div  className="input-group">
-                                    <input required type="number" className="form-control" name="text" id="text" placeholder="1000"
-                                        value={montant}
-                                        onChange={(e) => setMontant(e.target.value)} />
-                                    <div className="input-group-append">
-                                        <span style={{height: '50px', background:"#1d5d1d", color:"white"}} className="input-group-text addon-dollar">CFA</span>
-                                    </div>
-                                    </div>
-                                   
+                                    <div className="d-flex justify-content-center align-items-center flex-row">
+                            <div className="mb-3 ">
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="montantType"
+                                        value="1000"
+                                        checked={isMontant1000Selected}
+                                        onChange={() => {
+                                            setIsMontant1000Selected(true);
+                                            setMontant(1000);
+                                            setMontantSaisi('');
+                                        }}
+                                    />
+                                    Montant de base (1000 CFA)
+                                </label>
+                            </div>
+                            <div className="mb-3  ">
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="montantType"
+                                        value="autre"
+                                        checked={!isMontant1000Selected}
+                                        onChange={() => {
+                                            setIsMontant1000Selected(false);
+                                            setMontantSaisi('');
+                                        }}
+                                    />
+
+                                    Autre montant
+                                </label>
+                            </div>
+                        </div>
+                        {!isMontant1000Selected && (
+                            <div className="mb-3 d-flex align-items-center">
+                                <input
+                                    required
+                                    type="number"
+                                    className="form-control"
+                                    name="text"
+                                    id="text"
+                                    placeholder="Entrez un montant"
+                                    value={montantSaisi}
+                                    onChange={(e) => setMontantSaisi(e.target.value)}
+                                />
+                                <span style={{height:"52px", background: "#1d5d1d", color: "white" }} className="input-group-text addon-dollar mb-4">CFA</span>
+                            </div>
+                        )}
+
                                 </div>
                                 <div className="row">
 
@@ -164,24 +225,26 @@ const Donate = (props) => {
                                     <div className="tp-payment-area">
                                         <div className="row">
                                             <div className="col-12">
-                                       <Image
-                                        src={pmt1} // Update the path to your image
-                                        alt="Description of the image"
-                                        width={800} // Set the desired width
-                                        height={150} // Set the desired height
-      />
+                                                <Image
+                                                    src={pmt1} // Update the path to your image
+                                                    alt="Description of the image"
+                                                    width={800} // Set the desired width
+                                                    height={150} // Set the desired height
+                                                />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="submit-area sub-btn">
                                     <button onClick={(e) => {
-      if (montant.value !== '') {
-        getParams();
-      } else {
-        alert('Veuillez saisir le montant avant de continuer.');
-      }
-    }} type="submit" className="theme-btn submit-btn">Faire le don</button>
+                                        if (montant.value !== '') {
+                                            getParams();
+                                        } else {
+                                            getParams();
+
+                                            // alert('Veuillez saisir le montant avant de continuer.');
+                                        }
+                                    }} type="submit" className="theme-btn submit-btn">Faire le don</button>
                                 </div>
                             </form>
                         </div>

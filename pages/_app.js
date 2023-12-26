@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <div>
       <Head>
-        <title>Khairah - Charity Nonprofit Next Js Template</title>
+        <title> </title>
       </Head>
       <Component {...pageProps} />
       <ToastContainer />
