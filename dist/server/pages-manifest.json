@@ -1,8 +1,1 @@
-{
-  "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/donate": "pages/donate.js",
-  "/home": "pages/home.js"
-}
+{"/_app":"pages/_app.js","/_document":"pages/_document.js","/_error":"pages/_error.js","/404":"pages/404.html","/blog-details-fullwidth/[slug]":"pages/blog-details-fullwidth/[slug].html","/about":"pages/about.html","/api/hello":"pages/api/hello.js","/blog-details-left/[slug]":"pages/blog-details-left/[slug].html","/blog-left":"pages/blog-left.html","/blog-fullwidth":"pages/blog-fullwidth.html","/blog-single/[slug]":"pages/blog-single/[slug].html","/blog":"pages/blog.html","/case":"pages/case.html","/cause-single/[slug]":"pages/cause-single/[slug].html","/cause-single/sidebar":"pages/cause-single/sidebar.html","/contact":"pages/contact.html","/donate":"pages/donate.html","/event/[slug]":"pages/event/[slug].html","/event":"pages/event.html","/event/sidebar":"pages/event/sidebar.html","/home":"pages/home.html","/home2":"pages/home2.html","/forgot-password":"pages/forgot-password.html","/":"pages/index.html","/login":"pages/login.html","/register":"pages/register.html","/team-single/[slug]":"pages/team-single/[slug].html","/volunteer":"pages/volunteer.html"}
