@@ -30,7 +30,7 @@ const Hero = () => {
                            
                          
                             <div className="slide-btns">
-                                <Link href="/donate" className="theme-btn">Faire un don maintenant<i className="fa fa-angle-double-right" aria-hidden="true"></i></Link>
+                                <Link href="/donate" className="theme-btn">Faire un don maintenant y<i className="fa fa-angle-double-right" aria-hidden="true"></i></Link>
                             </div>
                         </div>
                        

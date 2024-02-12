@@ -17,7 +17,7 @@ const CauseSection = (props) => {
                         <div className="thumb-text">
                             <span>CAMPAGNES</span>
                         </div>
-                        <h2>Nos Dernières campagnes</h2>
+                        <h2> Dernières campagnes</h2>
                     </div>
                 </div>
                 <div className="row">
