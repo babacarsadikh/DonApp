@@ -54,7 +54,7 @@ const Donate = (props) => {
     const [selectedCountry, setSelectedCountry] = useState(null);
 
     const handleCountryChange = (event) => {
-        // Mettez à jour l'état avec le pays sélectionné
+        // Mettez à jour l'état avec le pays 
         setSelectedCountry(event.target.value);
     };
     const router = useRouter();
